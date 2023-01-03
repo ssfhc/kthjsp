@@ -27,7 +27,7 @@ public class NoticeRegProcController implements NController{
 		 * request.getRequestDispatcher("notice.jsp").forward(request, response);
 		 */
 		if(cnt>0) {
-			response.sendRedirect("notice.jsp");
+			response.sendRedirect("notice.do");
 			
 		}
 	}

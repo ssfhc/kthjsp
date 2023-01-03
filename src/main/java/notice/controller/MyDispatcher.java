@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import notice.controller.customer.NoticeController;
+import notice.controller.customer.NoticeDelProcController;
 import notice.controller.customer.NoticeDetailController;
 import notice.controller.customer.NoticeEditController;
 import notice.controller.customer.NoticeEditProcController;
@@ -14,45 +15,46 @@ import notice.controller.customer.NoticeRegController;
 import notice.controller.customer.NoticeRegProcController;
 
 public class MyDispatcher extends HttpServlet{
+
 	
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(".do신호");
-		String uri = request.getRequestURI();
-		String conPath = request.getContextPath();
-		
-		String com = uri.substring(conPath.length());
-
+	protected void service(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		System.out.println("hihi");
+		String uri=request.getRequestURI();
+		String conPath=request.getContextPath();
+		String com=uri.substring(conPath.length());//substring 객체안 텍스트삭제
+//		System.out.println("uri :"+uri);
+//		System.out.println("conpath : "+conPath);
 		System.out.println("com : "+com);
 		
-//		NoticeDetailController controller1 = new NoticeDetailController();
-//		NoticeEditController controller2 = new NoticeEditController();
-		NController ncontroller = null;
-		
+//		NoticeDetailController controller1=new NoticeDetailController();
+//		NoticeEditController controller2=new NoticeEditController();
+		NController ncontroller=null;
+	//controller로 안내해주는역활	
 		try {
-			if(com.equals("/customer/noticeDetail.do")) { //필요할때 객체생성
+			if(com.equals("/customer/noticeDetail.do")) {
 //				controller1.execute(request,response);
-				ncontroller = new NoticeDetailController();
+				ncontroller=new NoticeDetailController();
 			}else if(com.equals("/customer/noticeEdit.do")) {
 //				controller2.execute(request,response);
-				ncontroller = new NoticeEditController();
+				ncontroller=new NoticeEditController();
 			}else if(com.equals("/customer/noticeEditProc.do")) {
-				ncontroller = new NoticeEditProcController();
+				ncontroller=new NoticeEditProcController();				
 			}else if(com.equals("/customer/noticeReg.do")) {
-				ncontroller = new NoticeRegController();
+				ncontroller=new NoticeRegController();
 			}else if(com.equals("/customer/noticeRegPro.do")) {
-				ncontroller = new NoticeRegProcController();
+				ncontroller=new NoticeRegProcController();
 			}else if(com.equals("/customer/notice.do")) {
-				ncontroller = new NoticeController();
+				ncontroller=new NoticeController();
+			}else if(com.equals("/customer/noticeDelProc.do")) {
+				ncontroller=new NoticeDelProcController();
 			}
 			ncontroller.execute(request, response);
-			
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
-	
 	
 	
 }

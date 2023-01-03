@@ -10,34 +10,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 import notice.db.DBCon;
+
 import notice.vo.Notice;
 
 public class NoticeDao {
 	
-	  public List<Notice> getList() throws Exception{
-		  Connection conn = DBCon.getConnection();
-			//접속성공상태
-			String sql = "select * from notices order by to_number(seq) desc";
-			    
-			 //실행
-			 Statement st = conn.createStatement();
-			 ResultSet rs = st.executeQuery(sql);
-			 
-			 //리스트를 담을 그릇
-			 List<Notice> list = new ArrayList<Notice>();
-			 while(rs.next()) {
-				 Notice n = new Notice();
-				 n.setSeq(rs.getString("s,eq"));
-				 n.setTitle(rs.getString("title"));
-				 n.setWriter(rs.getString("writer"));
-				 n.setContent(rs.getString("content"));
-				 n.setRegdate(rs.getDate("regdate"));
-				 n.setHit(rs.getInt("hit"));
-				 
-				 list.add(n);   //한줄 씩 list에 담아주기
-			 }
-			 return list;
-	  }
+	public List<Notice> getList() throws Exception{
+		Connection conn =DBCon.getConnection();
+		//접속성공 상태
+		String sql = "select * from notices order by to_number(seq) desc";
+
+		//실행
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		//리스트를 담을 그릇
+		List<Notice> list=new ArrayList<Notice>();
+		while (rs.next()) {
+			Notice n=new Notice();
+			n.setSeq(rs.getString("seq"));
+			n.setTitle(rs.getString("title"));
+			n.setWriter(rs.getString("writer"));
+			n.setContent(rs.getString("content"));
+			n.setRegdate(rs.getDate("regdate"));
+			n.setHit(rs.getInt("hit"));
+			
+			list.add(n);
+		}
+		return list;
+	}
 	
 	  public int delete(Notice n) throws Exception { 
 	  

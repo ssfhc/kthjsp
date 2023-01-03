@@ -14,14 +14,16 @@ import notice.db.DBCon;
 import notice.vo.Notice;
 
 public class NoticeController implements NController{
+	
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("NoticeController mvc2신호");
+		System.out.println("NoticeController mvc2 신호");
 		
-		NoticeDao dao = new NoticeDao();
+		
+		NoticeDao dao=new NoticeDao();
 		List<Notice> list=dao.getList();
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("notice.jsp").forward(request, response);
-		 
-	}
+		
+    }
 }

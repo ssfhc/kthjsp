@@ -17,14 +17,14 @@
 <%
 request.setCharacterEncoding("utf-8");
 
-String num = request.getParameter("c");
+//String num = request.getParameter("c");
 
 //Notice n = new Notice();
 //n.setSeq(num);
 
-NoticeDao dao = new NoticeDao();
+//NoticeDao dao = new NoticeDao();
 //int cnt = dao.delete(n);
-int cnt = dao.delete(num);
+//int cnt = dao.delete(num);
 
 /* String driver = "oracle.jdbc.driver.OracleDriver";
 String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -41,9 +41,9 @@ pstmt.setString(1, num);
 
 
 int cnt = pstmt.executeUpdate(); */
-if(cnt>0){
+/* if(cnt>0){
 	response.sendRedirect("notice.jsp");
-}
+} */
 %>
 </body>
 </html>
